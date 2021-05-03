@@ -23,7 +23,7 @@ dag = DAG(dag_id='spark_job_dag',
           schedule_interval="0 * * * *")
 
 cmd = """
-/spark/bin/spark-submit --master k8s://https://<k8s-apiserver-host>:<k8s-apiserver-port> \
+/spark/bin/spark-submit --master k8s://https://aksdns-ff976585.hcp.westeurope.azmk8s.io:443 \
     --deploy-mode cluster \
     --name spark-pi \
     --class org.apache.spark.examples.SparkPi \
