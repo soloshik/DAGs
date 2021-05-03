@@ -21,7 +21,6 @@ dag = DAG(dag_id='spark_job_dag',
           default_args=default_args,
           catchup=False,
           schedule_interval="0 * * * *")
-pyspark_app_home = Variable.get("PYSPARK_APP_HOME")
 
 cmd = """
 /spark/bin/spark-submit --master k8s://https://<k8s-apiserver-host>:<k8s-apiserver-port> \
