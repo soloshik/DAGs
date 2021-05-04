@@ -15,7 +15,7 @@ default_args = {
     'email_on_retry': True,
     'retries': 0,
     'retry_delay': timedelta(minutes=5)
-
+}
 dag = DAG(dag_id='simple_ex',
           default_args=default_args,
           catchup=False,
