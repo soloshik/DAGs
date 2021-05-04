@@ -3,8 +3,12 @@ import airflow
 from airflow import DAG
 from airflow.contrib.operators.ssh_operator import SSHOperator
 import os
+import sys
 from airflow.operators.bash import BashOperator
 import pendulum
+
+os.environ['SPARK_HOME'] = '/opt/spark'
+sys.path.append(os.path.join(os.environ['SPARK_HOME'], 'bin'))
 
 local_tz = pendulum.timezone("Asia/Tehran")
 default_args = {
