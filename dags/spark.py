@@ -31,6 +31,11 @@ t1 = BashOperator(
     bash_command='ls -la',
     dag=dag)
 
+t3 = BashOperator(
+    task_id='print_ls',
+    bash_command='pwd',
+    dag=dag)
+
 print_path_env_task = BashOperator(
     task_id='print_path_env',
     bash_command='echo $PATH',
