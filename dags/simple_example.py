@@ -42,12 +42,11 @@ spark_submit_task = SparkSubmitOperator(
     name='airflow-spark',
     verbose=True,
     driver_memory='1g',
-    conf={       
-        
+    conf={              
         'spark.kubernetes.container.image': 'soloshik/spark:v2',
         'spark.kubernetes.authenticate.driver.serviceAccountName': 'spark'
         },
-    dag=dag
+    dag=dag,
 )
 
 
