@@ -9,15 +9,16 @@ import pendulum
 local_tz = pendulum.timezone("Asia/Tehran")
 
 default_args = {
-    'owner': 'airflow',
+    'owner': 'mahdyne',
     'depends_on_past': False,
     'start_date': datetime(2020, 10, 10, tzinfo=local_tz),
-    
+    'email': ['nematpour.ma@gmail.com'],
     'email_on_failure': True,
     'email_on_retry': True,
     'retries': 0,
-    'retry_delay': timedelta(minutes=5),
+    'retry_delay': timedelta(minutes=5)
 }
+
 dag = DAG(dag_id='simple_ex',
           default_args=default_args,
           catchup=False,
