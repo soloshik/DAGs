@@ -52,5 +52,4 @@ spark_submit_task = SparkSubmitOperator(
     dag=dag,
 )
 
-t1.set_upstream(print_path_env_task)
-spark_submit_task.set_upstream(t1)
+
