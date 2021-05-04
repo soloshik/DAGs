@@ -6,6 +6,8 @@ from airflow.models import Variable
 from datetime import datetime, timedelta
 import pendulum
 
+local_tz = pendulum.timezone("Asia/Tehran")
+
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
