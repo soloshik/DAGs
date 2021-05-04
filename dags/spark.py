@@ -27,6 +27,6 @@ dag = DAG(dag_id='spark_job_dag',
           schedule_interval="*/1 * * * *")
 
 cmd = """
-spark-submit --master k8s://https://10.0.0.1:443 --deploy-mode cluster --name spark-pi --class org.apache.spark.examples.SparkPi --conf spark.executor.instances=3 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark --conf spark.kubernetes.container.image=soloshik/spark:v2 local:///opt/spark/work-dir/SparkPi-assembly-0.1.0-SNAPSHOT.jar 
+spark-submit --master k8s://https://kubernetes:443 --deploy-mode cluster --name spark-pi --class org.apache.spark.examples.SparkPi --conf spark.executor.instances=3 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark --conf spark.kubernetes.container.image=soloshik/spark:v2 local:///opt/spark/work-dir/SparkPi-assembly-0.1.0-SNAPSHOT.jar 
 """
 t = BashOperator(task_id='Spark_datamodel',bash_command=cmd,dag=dag)
