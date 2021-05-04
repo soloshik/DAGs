@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 import pendulum
 from airflow import DAG
 from airflow.models import Variable
+from airflow.operators.bash_operator import BashOperator
 from airflow.contrib.operators.spark_submit_operator import SparkSubmitOperator
 
 default_args = {
