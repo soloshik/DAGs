@@ -20,7 +20,7 @@ default_args = {
     # 'queue': 'bash_queue',
     # 'pool': 'backfill',
     # 'priority_weight': 10,
-    'end_date': datetime(2018, 7, 29),
+    'end_date': datetime(2021, 7, 29),
 }
 
 dag = DAG(
@@ -39,7 +39,7 @@ print_path_env_task = BashOperator(
 spark_submit_task = SparkSubmitOperator(
     task_id='spark_submit_job',
     conn_id='spark_default',
-    java_class='com.ibm.cdopoc.DataLoaderDB2COS',
+    java_class='org.apache.spark.examples.SparkPi',
     application='local:///opt/spark/work-dir/SparkPi-assembly-0.1.0-SNAPSHOT.jar',
     total_executor_cores='1',
     executor_cores='1',
@@ -48,18 +48,9 @@ spark_submit_task = SparkSubmitOperator(
     name='airflowspark-DataLoaderDB2COS',
     verbose=True,
     driver_memory='1g',
-    conf={
-        'spark.DB_URL': 'jdbc:db2://dashdb-dal13.services.dal.bluemix.net:50001/BLUDB:sslConnection=true;',
-        'spark.DB_USER': Variable.get("CEDP_DB2_WoC_User"),
-        'spark.DB_PASSWORD': Variable.get("CEDP_DB2_WoC_Password"),
-        'spark.DB_DRIVER': 'com.ibm.db2.jcc.DB2Driver',
-        'spark.DB_TABLE': 'MKT_ATBTN.MERGE_STREAM_2000_REST_API',
-        'spark.COS_API_KEY': Variable.get("COS_API_KEY"),
-        'spark.COS_SERVICE_ID': Variable.get("COS_SERVICE_ID"),
-        'spark.COS_ENDPOINT': 's3-api.us-geo.objectstorage.softlayer.net',
-        'spark.COS_BUCKET': 'data-ingestion-poc',
-        'spark.COS_OUTPUT_FILENAME': 'cedp-dummy-table-cos2',
-        'spark.kubernetes.container.image': 'ctipka/spark:spark-docker',
+    conf={       
+        'spark.executor.instances': '2',
+        'spark.kubernetes.container.image': 'soloshik/spark:v2',
         'spark.kubernetes.authenticate.driver.serviceAccountName': 'spark'
         },
     dag=dag,
