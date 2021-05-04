@@ -16,8 +16,10 @@ default_args = {
     'retries': 0,
     'retry_delay': timedelta(minutes=5)
 
-dag = DAG(
-    'tutorial_spark_operator', default_args=default_args, schedule_interval=timedelta(1))
+dag = DAG(dag_id='simple_ex',
+          default_args=default_args,
+          catchup=False,
+          schedule_interval="*/1 * * * *")
 
 t1 = BashOperator(
     task_id='print_date',
