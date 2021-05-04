@@ -20,6 +20,8 @@ dag = DAG(dag_id='simple_ex',
           catchup=False,
           schedule_interval="*/1 * * * *")
 
+pyspark_app_home = Variable.get("PYSPARK_APP_HOME")
+
 t1 = BashOperator(
     task_id='print_date',
     bash_command='date',
@@ -34,7 +36,7 @@ spark_submit_task = SparkSubmitOperator(
     task_id='spark_submit_job',
     conn_id='spark_default',
     java_class='org.apache.spark.examples.SparkPi',
-    application='local:///opt/spark/work-dir/SparkPi-assembly-0.1.0-SNAPSHOT.jar',
+    application=f'local:///opt/spark/work-dir/SparkPi-assembly-0.1.0-SNAPSHOT.jar',
     total_executor_cores='1',
     executor_cores='1',
     executor_memory='2g',
@@ -42,11 +44,8 @@ spark_submit_task = SparkSubmitOperator(
     name='airflow-spark',
     verbose=True,
     driver_memory='1g',
-    conf={              
-        'spark.kubernetes.container.image': 'soloshik/spark:v2',
-        'spark.kubernetes.authenticate.driver.serviceAccountName': 'spark'
-        },
-    dag=dag,
+    
+    dag=dag
 )
 
 
