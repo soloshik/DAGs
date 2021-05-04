@@ -33,7 +33,7 @@ t1 = BashOperator(
 
 t3 = BashOperator(
     task_id='print_pwd',
-    bash_command='pwd',
+    bash_command='ls -l /opt/',
     dag=dag)
 
 print_path_env_task = BashOperator(
