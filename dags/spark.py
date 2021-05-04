@@ -32,7 +32,7 @@ t1 = BashOperator(
     dag=dag)
 
 t3 = BashOperator(
-    task_id='print_ls',
+    task_id='print_pwd',
     bash_command='pwd',
     dag=dag)
 
