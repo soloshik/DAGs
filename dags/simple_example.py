@@ -9,19 +9,14 @@ from airflow.models import Variable
 from datetime import datetime, timedelta
 
 default_args = {
-    'owner': 'user@mail.com',
+    'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2018, 7, 27),
-    'email': ['user@mail.com'],
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retries': 1,
-    'retry_delay': timedelta(minutes=5),
-    # 'queue': 'bash_queue',
-    # 'pool': 'backfill',
-    # 'priority_weight': 10,
-    'end_date': datetime(2021, 7, 29),
-}
+    'start_date': datetime(2020, 10, 10, tzinfo=local_tz),
+    
+    'email_on_failure': True,
+    'email_on_retry': True,
+    'retries': 0,
+    'retry_delay': timedelta(minutes=5)
 
 dag = DAG(
     'tutorial_spark_operator', default_args=default_args, schedule_interval=timedelta(1))
