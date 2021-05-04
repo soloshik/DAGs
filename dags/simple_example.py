@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 import pendulum
 from airflow import DAG
-from airflow.contrib.operators.spark_submit_operator import SparkSubmitOperator
+from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOperator
 from airflow.models import Variable
 
 local_tz = pendulum.timezone("Asia/Tehran")
