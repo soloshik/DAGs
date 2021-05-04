@@ -49,7 +49,7 @@ spark_submit_task = SparkSubmitOperator(
         'spark.kubernetes.container.image': 'soloshik/spark:v2',
         'spark.kubernetes.authenticate.driver.serviceAccountName': 'spark'
         },
-    dag=dag
+    dag=dag,
 )
 
 
