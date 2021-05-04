@@ -37,6 +37,6 @@ print_path_env_task = BashOperator(
     dag=dag)
 
 cmd = """
-spark-submit --master k8s://https://aksdns-a052e792.hcp.westeurope.azmk8s.io:443 --deploy-mode cluster --name spark-pi --class org.apache.spark.examples.SparkPi --conf spark.executor.instances=3 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark --conf spark.kubernetes.container.image=soloshik/spark:v2 local:///opt/spark/work-dir/SparkPi-assembly-0.1.0-SNAPSHOT.jar 
+spark-submit --master k8s://https://kubernetes:443 --deploy-mode cluster --name spark-pi --class org.apache.spark.examples.SparkPi --conf spark.executor.instances=3 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark --conf spark.kubernetes.container.image=soloshik/spark:v2 local:///opt/spark/work-dir/SparkPi-assembly-0.1.0-SNAPSHOT.jar 
 """
 t2 = BashOperator(task_id='Spark_datamodel',bash_command=cmd,dag=dag)
