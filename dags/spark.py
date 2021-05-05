@@ -31,16 +31,6 @@ t1 = BashOperator(
     bash_command='ls -la',
     dag=dag)
 
-t3 = BashOperator(
-    task_id='print_pwd',
-    bash_command='ls -l /opt/',
-    dag=dag)
-
-print_path_env_task = BashOperator(
-    task_id='print_path_env',
-    bash_command='echo $PATH',
-    dag=dag)
-
 kubernetes_full_pod = KubernetesPodOperator(
     task_id='spark_submit_job',
     name='spark-job-init-container',
