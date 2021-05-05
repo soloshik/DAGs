@@ -38,7 +38,7 @@ kubernetes_full_pod = KubernetesPodOperator(
     image='soloshik/spark:v2',
     cmds=['spark-submit'],
     arguments=[
-        '--master k8s://https://aksdns-8d6caad6.hcp.westeurope.azmk8s.io:443',
+        '--master=k8s://https://aksdns-8d6caad6.hcp.westeurope.azmk8s.io:443',
         '--deploy-mode cluster',
         '--name spark-pi',
         '--class org.apache.spark.examples.SparkPi',
