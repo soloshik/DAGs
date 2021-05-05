@@ -43,7 +43,7 @@ print_path_env_task = BashOperator(
 
 kubernetes_full_pod = KubernetesPodOperator(
     task_id='spark_submit_job',
-    name='spark-job-task',
+    name='spark-job-init-container',
     namespace='default',
     image='soloshik/spark:v2',
     cmds=['bin/spark-submit'],
