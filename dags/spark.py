@@ -1,7 +1,7 @@
 from datetime import timedelta, datetime
 import airflow
 from airflow import DAG
-from airflow.contrib.operators.ssh_operator import SSHOperator
+from airflow.operators.kubernetes_pod_operator import KubernetesPodOperator
 import os
 import sys
 from airflow.operators.bash import BashOperator
@@ -41,7 +41,21 @@ print_path_env_task = BashOperator(
     bash_command='echo $PATH',
     dag=dag)
 
-cmd = """
-spark-submit --master k8s://https://kubernetes:443 --deploy-mode cluster --name spark-pi --class org.apache.spark.examples.SparkPi --conf spark.executor.instances=3 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark --conf spark.kubernetes.container.image=soloshik/spark:v2 local:///opt/spark/work-dir/SparkPi-assembly-0.1.0-SNAPSHOT.jar 
-"""
-t2 = BashOperator(task_id='Spark_datamodel',bash_command=cmd,dag=dag)
+kubernetes_full_pod = KubernetesPodOperator(
+    task_id='spark_submit_job',
+    conn_id='spark_default',
+    name='spark-job-task',
+    namespace='default',
+    image='soloshik/spark:v2',
+    cmds=['bin/spark-submit'],
+    arguments=[
+        '--master k8s://https://kubernetes:443',
+        '--deploy-mode cluster',
+        '--name spark-pi',
+        '--class org.apache.spark.examples.SparkPi',
+        '--conf spark.executor.instances=3',
+        '--conf spark.kubernetes.container.image': 'soloshik/spark:v2',
+        '--conf spark.kubernetes.authenticate.driver.serviceAccountName': 'spark',
+        'local:///opt/spark/work-dir/SparkPi-assembly-0.1.0-SNAPSHOT.jar'
+    ],
+)
