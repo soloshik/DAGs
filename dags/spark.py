@@ -42,7 +42,6 @@ kubernetes_full_pod = KubernetesPodOperator(
         '--deploy-mode=cluster',
         '--name=spark-pi',
         '--class=org.apache.spark.examples.SparkPi',
-        f'--conf spark.executor.instances=3',
         f'--conf spark.kubernetes.container.image=soloshik/spark:v2',
         f'--conf spark.kubernetes.authenticate.driver.serviceAccountName=spark',
         'local:///opt/spark/work-dir/SparkPi-assembly-0.1.0-SNAPSHOT.jar'
