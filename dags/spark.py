@@ -1,7 +1,7 @@
 from datetime import timedelta, datetime
 import airflow
 from airflow import DAG
-from airflow.operators.kubernetes_pod_operator import KubernetesPodOperator
+from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
 import os
 import sys
 from airflow.operators.bash import BashOperator
