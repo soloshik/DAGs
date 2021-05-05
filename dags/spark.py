@@ -36,7 +36,7 @@ kubernetes_full_pod = KubernetesPodOperator(
     name='spark-job-init-container',
     namespace='default',
     image='soloshik/spark:v2',
-    cmds=['spark-submit'],
+    cmds=['/opt/spark/bin/spark-submit'],
     arguments=[
         '--master=k8s://https://aksdns-8d6caad6.hcp.westeurope.azmk8s.io:443',
         '--deploy-mode cluster',
