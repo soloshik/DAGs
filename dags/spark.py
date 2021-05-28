@@ -21,7 +21,7 @@ default_args = {
     'retries': 0,
     'retry_delay': timedelta(minutes=5)
 }
-dag = DAG(dag_id='spark_job_dag',
+dag = DAG(dag_id='simple_spark_job_dag',
           default_args=default_args,
           catchup=False,
           schedule_interval="*/1 * * * *")
