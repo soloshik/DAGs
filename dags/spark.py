@@ -32,7 +32,7 @@ t1 = BashOperator(
     dag=dag)
 
 kubernetes_full_pod = KubernetesPodOperator(
-    task_id='spark_submit_job',
+    task_id='simple_spark_submit_job',
     name='spark-job-init-container',
     namespace='default',
     image='soloshik/spark:v2',
