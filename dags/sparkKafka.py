@@ -43,7 +43,7 @@ kubernetes_full_pod = KubernetesPodOperator(
         '--name=spark-kafka',
         '--packages=org.apache.hadoop:hadoop-aws:jar:3.2.2',
         '--packages=com.amazonaws:aws-java-sdk-bundle:jar:1.11.563',
-        '--packages=org.apache.spark:spark-sql-kafka-0-10_2.11:jar:2.1.0',
+        '--packages=org.apache.spark:spark-sql-kafka-0-10_2.11:jar:3.1.2',
         '--conf',
         'spark.kubernetes.container.image=soloshik/sparkpy:1.0',
         '--conf',
