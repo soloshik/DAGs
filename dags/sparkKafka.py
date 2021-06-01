@@ -38,7 +38,7 @@ kubernetes_full_pod = KubernetesPodOperator(
     image='soloshik/sparkpy:1.0',
     cmds=['/opt/spark/bin/spark-submit'],
     arguments=[
-        '--master=k8s://https://aksdns-c8c8a731.hcp.westeurope.azmk8s.io:443',
+        '--master=k8s://https://aksdns-6c80f37b.hcp.westeurope.azmk8s.io',
         '--deploy-mode=cluster',
         '--name=spark-kafka',
         '--packages=org.apache.hadoop:hadoop-aws:jar:3.2.2',
@@ -48,6 +48,8 @@ kubernetes_full_pod = KubernetesPodOperator(
         'spark.kubernetes.container.image=soloshik/sparkpy:1.0',
         '--conf',
         'spark.kubernetes.authenticate.driver.serviceAccountName=spark',
+        '--conf',
+        'spark.jars.ivy=/tmp/.ivy',
         'local:///opt/spark/work-dir/readkafka.py'
     ],
     dag=dag
