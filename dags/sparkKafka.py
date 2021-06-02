@@ -35,7 +35,7 @@ kubernetes_full_pod = KubernetesPodOperator(
     task_id='spark_kafka_submit_job',
     name='spark-kafka-job-init-container',
     namespace='default',
-    image='soloshik/sparkpy:1.5',
+    image='soloshik/pyspsrk:1.5',
     cmds=['/opt/spark/bin/spark-submit'],
     arguments=[
         '--master=k8s://https://aksdns-6c80f37b.hcp.westeurope.azmk8s.io',
@@ -45,7 +45,7 @@ kubernetes_full_pod = KubernetesPodOperator(
         '--packages=com.amazonaws:aws-java-sdk-bundle:jar:1.11.563',
         '--packages=org.apache.spark:spark-sql-kafka-0-10_2.12:jar:3.1.2',
         '--conf',
-        'spark.kubernetes.container.image=soloshik/sparkpy:1.5',
+        'spark.kubernetes.container.image=soloshik/pyspsrk:1.5',
         '--conf',
         'spark.kubernetes.authenticate.driver.serviceAccountName=spark',
         '--conf',
