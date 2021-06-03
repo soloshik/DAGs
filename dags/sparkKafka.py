@@ -38,7 +38,7 @@ kubernetes_full_pod = KubernetesPodOperator(
     image='soloshik/pyspsrk:2.0',
     cmds=['/opt/spark/bin/spark-submit'],
     arguments=[
-        '--master=k8s://https://aksdns-f24e0de6.hcp.westeurope.azmk8s.io:443',
+        '--master=k8s://https://aksdns-e6d92e4d.hcp.westeurope.azmk8s.io:443',
         '--deploy-mode=cluster',
         '--name=spark-kafka',
         '--packages',
