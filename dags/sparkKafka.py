@@ -24,7 +24,7 @@ default_args = {
 dag = DAG(dag_id='spark_kafka_submit_dag',
           default_args=default_args,
           catchup=False,
-          schedule_interval="*/15 * * * *")
+          schedule_interval="*/1 * * * *")
 
 t1 = BashOperator(
     task_id='print_ls',
