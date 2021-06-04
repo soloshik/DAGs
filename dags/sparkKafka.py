@@ -49,6 +49,8 @@ kubernetes_full_pod = KubernetesPodOperator(
         'spark.kubernetes.container.image=soloshik/pyspsrk:2.0',
         '--conf',
         'spark.kubernetes.authenticate.driver.serviceAccountName=spark',
+         '--conf',
+        'spark.jars.ivy=/tmp/.ivy',
         'local:///opt/spark/work-dir/readkafka.py'
     ],
     dag=dag
