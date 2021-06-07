@@ -50,7 +50,7 @@ kubernetes_full_pod = KubernetesPodOperator(
         '--conf',
         'spark.kubernetes.authenticate.driver.serviceAccountName=spark',
          '--conf',
-        'spark.jars.ivy=/tmp/.ivy',
+        'spark.jars.ivy=/tmp',
         'local:///opt/spark/work-dir/readkafka.py'
     ],
     dag=dag
