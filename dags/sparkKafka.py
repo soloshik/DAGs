@@ -24,7 +24,7 @@ default_args = {
 dag = DAG(dag_id='spark_kafka_submit_dag',
           default_args=default_args,
           catchup=False,
-          schedule_interval="*/1 * * * *")
+          schedule_interval="* */1 * * *")
 
 t1 = BashOperator(
     task_id='print_ls',
@@ -35,10 +35,10 @@ kubernetes_full_pod = KubernetesPodOperator(
     task_id='spark_kafka_submit_job',
     name='spark-kafka-job-init-container',
     namespace='default',
-    image='soloshik/pyspsrk:2.46',
+    image='soloshik/pyspsrk:2.47',
     cmds=['/opt/spark/bin/spark-submit'],
     arguments=[
-        '--master=k8s://https://aksdns-f2f5f6e3.hcp.westeurope.azmk8s.io:443',
+        '--master=k8s://https://aksdns-c62365c4.hcp.westeurope.azmk8s.io:443',
         '--deploy-mode=cluster',
         '--name=spark-kafka',
         '--packages=org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.2',
@@ -48,7 +48,7 @@ kubernetes_full_pod = KubernetesPodOperator(
         '--packages=org.apache.commons:commons-pool2:2.6.2',
         '--packages=org.apache.spark:spark-token-provider-kafka-0-10_2.12:3.1.2',
         '--conf',
-        'spark.kubernetes.container.image=soloshik/pyspsrk:2.46',
+        'spark.kubernetes.container.image=soloshik/pyspsrk:2.47',
         '--conf',
         'spark.kubernetes.authenticate.driver.serviceAccountName=spark',
          '--conf',
