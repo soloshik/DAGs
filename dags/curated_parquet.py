@@ -49,7 +49,7 @@ kubernetes_full_pod = KubernetesPodOperator(
         'spark.kubernetes.authenticate.driver.serviceAccountName=spark',
          '--conf',
         'spark.jars.ivy=/tmp',
-        'local:///opt/spark/work-dir/curateddata.py.py'
+        'local:///opt/spark/work-dir/curateddata.py'
     ],
     dag=dag
 )
