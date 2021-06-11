@@ -26,7 +26,7 @@ dag = DAG(dag_id='spark_kafka_minio_data_submit_dag',
           catchup=False,
           schedule_interval="* */1 * * *")
         
-Stage_1 = KubernetesPodOperator(
+stage_1 = KubernetesPodOperator(
     task_id='stage_1_submit_job',
     name='stage_1-job-init-container',
     namespace='default',
@@ -53,7 +53,7 @@ Stage_1 = KubernetesPodOperator(
     dag=dag
 )
 
-Stage_2 = KubernetesPodOperator(
+stage_2 = KubernetesPodOperator(
     task_id='stage_2_submit_job',
     name='stage_2-job-init-container',
     namespace='default',
@@ -79,4 +79,4 @@ Stage_2 = KubernetesPodOperator(
     ],
     dag=dag
 )
-Stage_1 >> Stage_2
+stage_1 >> stage_2
