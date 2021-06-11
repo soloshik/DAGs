@@ -22,7 +22,7 @@ default_args = {
     'retries': 0,
     'retry_delay': timedelta(minutes=5)
 }
-dag = DAG(dag_id='spark_cuated_data_submit_dag',
+dag = DAG(dag_id='spark_curated_data_submit_dag',
           default_args=default_args,
           catchup=False,
           schedule_interval="* */1 * * *")
