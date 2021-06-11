@@ -79,3 +79,4 @@ Stage_2 = KubernetesPodOperator(
     ],
     dag=dag
 )
+Stage_1 >> Stage_2
