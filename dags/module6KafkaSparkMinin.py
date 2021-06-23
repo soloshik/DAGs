@@ -70,7 +70,6 @@ stage_2 = KubernetesPodOperator(
         '--packages=org.apache.kafka:kafka-clients:2.6.0',
         '--packages=org.apache.commons:commons-pool2:2.6.2',
         '--packages=org.apache.spark:spark-token-provider-kafka-0-10_2.12:3.1.2',
-        '--packages=org.elasticsearch:elasticsearch-spark-30_2.12:7.13.2',
         '--conf',
         'spark.kubernetes.container.image=soloshik/pyspsrk:2.69se2',
         '--conf',
