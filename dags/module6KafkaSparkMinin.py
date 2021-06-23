@@ -33,7 +33,7 @@ stage_1 = KubernetesPodOperator(
     image='soloshik/pyspsrk:2.68',
     cmds=['/opt/spark/bin/spark-submit'],
     arguments=[
-        '--master=k8s://https://aksdns-8d061414.hcp.westeurope.azmk8s.io:443',
+        '--master=k8s://https://aksdns-f4acc1d3.hcp.westeurope.azmk8s.io:443',
         '--deploy-mode=cluster',
         '--name=spark-kafka',
         '--packages=org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.2',
@@ -61,7 +61,7 @@ stage_2 = KubernetesPodOperator(
     image='soloshik/pyspsrk:2.68',
     cmds=['/opt/spark/bin/spark-submit'],
     arguments=[
-        '--master=k8s://https://aksdns-8d061414.hcp.westeurope.azmk8s.io:443',
+        '--master=k8s://https://aksdns-f4acc1d3.hcp.westeurope.azmk8s.io:443',
         '--deploy-mode=cluster',
         '--name=spark-curated',
         '--packages=org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.2',
@@ -72,7 +72,7 @@ stage_2 = KubernetesPodOperator(
         '--packages=org.apache.spark:spark-token-provider-kafka-0-10_2.12:3.1.2',
         '--packages=org.elasticsearch:elasticsearch-hadoop:7.13.2',
         '--conf',
-        'spark.kubernetes.container.image=soloshik/pyspsrk:2.68',
+        'spark.kubernetes.container.image=soloshik/pyspsrk:2.69se',
         '--conf',
         'spark.kubernetes.authenticate.driver.serviceAccountName=spark',
          '--conf',
